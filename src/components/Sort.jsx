@@ -2,23 +2,23 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSort } from '../redux/slices/filterSlice';
 
+export const sortList = [
+  { name: 'популярности', sortProperty: 'rating' },
+  { name: 'популярности-', sortProperty: 'rating-' },
+  { name: 'цене', sortProperty: 'price' },
+  { name: 'цене-', sortProperty: 'price-' },
+  { name: 'алфавиту', sortProperty: 'title' },
+  { name: 'алфавиту-', sortProperty: 'title-' },
+];
+
 function Sort() {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filterSlice.sort);
 
   const [visible, setVisible] = React.useState(false);
 
-  const list = [
-    { name: 'популярности', sortProperty: 'rating' },
-    { name: 'популярности-', sortProperty: 'rating-' },
-    { name: 'цене', sortProperty: 'price' },
-    { name: 'цене-', sortProperty: 'price-' },
-    { name: 'алфавиту', sortProperty: 'title' },
-    { name: 'алфавиту-', sortProperty: 'title-' },
-  ];
-
   const onClickSortList = (obj) => {
-    dispatch(setSort(obj))
+    dispatch(setSort(obj));
     setVisible(false);
   };
 
@@ -42,7 +42,7 @@ function Sort() {
       {visible && (
         <div className="sort__popup">
           <ul>
-            {list.map((obj, i) => (
+            {sortList.map((obj, i) => (
               <li
                 key={i}
                 onClick={() => onClickSortList(obj)}
