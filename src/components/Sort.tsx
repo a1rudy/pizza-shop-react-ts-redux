@@ -2,7 +2,16 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectSort, setSort } from '../redux/slices/filterSlice';
 
-export const sortList = [
+type TSortItem = {
+  name: string,
+  sortProperty: string
+}
+
+type TPopupClick = MouseEvent & {
+  composedPath: () => Node[]
+}
+
+export const sortList: TSortItem[] = [
   { name: 'популярности', sortProperty: 'rating' },
   { name: 'популярности-', sortProperty: 'rating-' },
   { name: 'цене', sortProperty: 'price' },
@@ -13,26 +22,28 @@ export const sortList = [
 
 function Sort() {
   const dispatch = useDispatch();
-  const sortRef = React.useRef();
+  const sortRef = React.useRef<HTMLDivElement>(null);
   const sort = useSelector(selectSort);
 
-  const [visible, setVisible] = React.useState(false);
+  const [visible, setVisible] = React.useState<boolean>(false);
 
-  const onClickSortList = (obj) => {
+  const onClickSortList = (obj: TSortItem) => {
     dispatch(setSort(obj));
     setVisible(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (evt: MouseEvent) => {
+      const _evt = evt as TPopupClick
+
+      if (sortRef.current && !_evt.composedPath().includes(sortRef.current)) {
         setVisible(false);
       }
     };
-    document.addEventListener('click', handleClickOutside);
+    document.body.addEventListener('click', handleClickOutside);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.body.removeEventListener('click', handleClickOutside);
     };
   }, []);
 
