@@ -1,33 +1,32 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectSort, setSort } from '../redux/slices/filterSlice';
-
-type TSortItem = {
-  name: string,
-  sortProperty: string
-}
+import { SortPropertyEnum, TSort, selectSort, setSort } from '../redux/slices/filterSlice';
 
 type TPopupClick = MouseEvent & {
   composedPath: () => Node[]
 }
 
-export const sortList: TSortItem[] = [
-  { name: 'популярности', sortProperty: 'rating' },
-  { name: 'популярности-', sortProperty: 'rating-' },
-  { name: 'цене', sortProperty: 'price' },
-  { name: 'цене-', sortProperty: 'price-' },
-  { name: 'алфавиту', sortProperty: 'title' },
-  { name: 'алфавиту-', sortProperty: 'title-' },
+type TSortPopupProps = {
+  value: TSort;
+};
+
+export const sortList: TSort[] = [
+  { name: 'популярности', sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: 'популярности-', sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: 'цене', sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: 'цене-', sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: 'алфавиту', sortProperty: SortPropertyEnum.TITLE_DESC },
+  { name: 'алфавиту-', sortProperty: SortPropertyEnum.TITLE_ASC },
 ];
 
-function Sort() {
+const Sort: React.FC<TSortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
   const sort = useSelector(selectSort);
 
   const [visible, setVisible] = React.useState<boolean>(false);
 
-  const onClickSortList = (obj: TSortItem) => {
+  const onClickSortList = (obj: TSort) => {
     dispatch(setSort(obj));
     setVisible(false);
   };
@@ -80,6 +79,6 @@ function Sort() {
       )}
     </div>
   );
-}
+})
 
 export default Sort;
