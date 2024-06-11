@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import cartSlice from './slices/cartSlice';
-import filterSlice from './slices/filterSlice';
-import pizzaSlice from './slices/pizzaSlice';
+import cartSlice from './cart/slices';
+import filterSlice from './filter/slices';
+import pizzaSlice from './pizza/slices';
 
 export const store = configureStore({
   reducer: { filterSlice, cartSlice, pizzaSlice },

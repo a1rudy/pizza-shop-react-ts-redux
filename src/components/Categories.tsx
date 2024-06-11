@@ -5,7 +5,7 @@ type TCategoryProps = {
   onChangeCategory: (i: number) => void,
 }
 
-const Categories: React.FC<TCategoryProps> = ({ value, onChangeCategory }) => {
+const Categories: React.FC<TCategoryProps> = React.memo(({ value, onChangeCategory }) => {
   const categories: string[] = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
 
   return (
@@ -21,6 +21,6 @@ const Categories: React.FC<TCategoryProps> = ({ value, onChangeCategory }) => {
       </ul>
     </div>
   );
-}
+})
 
 export default Categories;
