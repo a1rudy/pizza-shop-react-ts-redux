@@ -2,12 +2,13 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import logoSvg from '../assets/img/pizza-logo.svg';
-import Search from '../pages/Search';
 import { selectCart } from '../redux/cart/selectors';
+import { selectFilter } from '../redux/filter/selectors';
+import Search from './Search';
 
-
-function Header() {
+const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
+  const { categoryId } = useSelector(selectFilter);
   const location = useLocation();
   const isMounted = React.useRef(false)
 
@@ -33,7 +34,7 @@ function Header() {
             </div>
           </div>
         </Link>
-        {location.pathname !== '/cart' && <Search />}
+        {(location.pathname !== '/cart' && categoryId === 0) && <Search />}
         <div className="header__cart">
           {location.pathname !== '/cart' && (
             <Link to="cart" className="button button--cart">
