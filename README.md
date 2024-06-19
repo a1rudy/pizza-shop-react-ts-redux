@@ -1,6 +1,6 @@
 # Интернет магазин по заказу пиццы: "PIZZA SHOP" на React + TypeSctipt + Redux
 
-Ссылка на проект: []()
+[Ссылка на проект](https://cheery-zabaione-3c2698.netlify.app)
 
 ------
 
