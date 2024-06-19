@@ -21,6 +21,10 @@ body {
 .content {
   padding: 40px 0;
 
+  @media (max-width: 900px) {
+    padding: 20px 0;
+  }
+
   &__error-info {
     margin: 100px auto;
     width: 500px;
@@ -96,7 +100,7 @@ body {
       }
     }
 
-    @media (max-width: 820px) {
+    @media (max-width: 900px) {
       .categories {
         margin-top: 30px;
       }
@@ -115,6 +119,34 @@ body {
     .content__title {
       margin: 0;
     }
+  }
+
+  &--full-pizza {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.full-pizza {
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__image {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    font-size: 40px;
+    margin-bottom: 30px;
+  }
+
+  &__price {
+    font-size: 25px;
+    margin-bottom: 30px;
   }
 }
 
@@ -382,6 +414,7 @@ body {
       line-height: 145.4%;
       letter-spacing: 0.01em;
       color: #777777;
+      white-space: pre-line;
     }
 
     icon {

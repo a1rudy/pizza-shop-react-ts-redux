@@ -80,7 +80,7 @@ const Home: React.FC = () => {
     getPizzas();
   }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
-  const loader = [...new Array(6)].map((_, i) => <Loader key={i} />);
+  const loader = [...new Array(3)].map((_, i) => <Loader key={i} />);
   const pizzas = items.map((obj: any, i: number) => <PizzaBlock key={i} {...obj} />);
 
   return (
@@ -99,7 +99,7 @@ const Home: React.FC = () => {
         <div className="content__items">{status === 'loading' ? loader : pizzas}</div>
       )}
 
-      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
+      {categoryId === 0 && <Pagination currentPage={currentPage} onChangePage={onChangePage} />}
     </div>
   );
 }
