@@ -1,0 +1,24 @@
+@import '../vendor/all';
+
+.full-pizza {
+  width: min-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__image {
+    width: 400px;
+    height: 400px;
+    margin-bottom: 10px;
+  }
+
+  &__title {
+    @include font(40px);
+    margin-bottom: 30px;
+  }
+
+  &__price {
+    @include font(25px);
+    margin-bottom: 30px;
+  }
+}

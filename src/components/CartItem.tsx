@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem, minusItem, removeItem } from '../redux/cart/slices';
 import { TCartItem } from '../redux/cart/types';
+import Button from './Button';
 
 type TCartItemProps = {
   id: string,
@@ -34,20 +35,17 @@ const CartItem: React.FC<TCartItemProps> = ({ id, title, price, imageUrl, count,
 
   return (
     <div className="cart__item">
-      <div className="cart__item-img">
-        <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+      <div className="cart__item-image-wrap">
+        <img className="cart__item-image" src={imageUrl} alt="Pizza" />
       </div>
       <div className="cart__item-info">
-        <h3>{title}</h3>
-        <p>
-          {type}, {size} см.
+        <h3 className="cart__item-name">{title}</h3>
+        <p className="cart__item-text">
+          {type} тесто, {size} см.
         </p>
       </div>
       <div className="cart__item-count">
-        <button
-          disabled={count === 1}
-          onClick={onClickMinus}
-          className="button button--outline button--circle cart__item-count-minus">
+        <Button disabled={count === 1} onClick={onClickMinus} className="button-circle cart__item-count-minus" outline>
           <svg
             width="10"
             height="10"
@@ -63,11 +61,9 @@ const CartItem: React.FC<TCartItemProps> = ({ id, title, price, imageUrl, count,
               fill="#EB5A1E"
             />
           </svg>
-        </button>
-        <b>{count}</b>
-        <button
-          onClick={onClickPlus}
-          className="button button--outline button--circle cart__item-count-plus">
+        </Button>
+        <p className="cart__item-count-text">{count}</p>
+        <Button onClick={onClickPlus} className="button-circle cart__item-count-plus" outline>
           <svg
             width="10"
             height="10"
@@ -83,13 +79,13 @@ const CartItem: React.FC<TCartItemProps> = ({ id, title, price, imageUrl, count,
               fill="#EB5A1E"
             />
           </svg>
-        </button>
+        </Button>
       </div>
       <div className="cart__item-price">
         <b>{price * count} ₽</b>
       </div>
       <div className="cart__item-remove">
-        <button onClick={onClickRemoveItem} className="button button--outline button--circle">
+        <Button onClick={onClickRemoveItem} className="button-circle" outline>
           <svg
             width="10"
             height="10"
@@ -105,7 +101,7 @@ const CartItem: React.FC<TCartItemProps> = ({ id, title, price, imageUrl, count,
               fill="#EB5A1E"
             />
           </svg>
-        </button>
+        </Button>
       </div>
     </div>
   );

@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Categories, Loader, PizzaBlock, Sort } from '../components';
 import Pagination from '../components/Pagination';
-import { sortList } from '../components/Sort';
 import { selectFilter } from '../redux/filter/selectors';
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/filter/slices';
 import { fetchPizzas } from '../redux/pizza/asyncActions';
 import { selectPizzaData } from '../redux/pizza/selectors';
 import { TFetchPizzasParams, TSearchPizzaParams } from '../redux/pizza/types';
 import { useAppDispatch } from '../redux/store';
+import { sortList } from '../utils/constants';
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -98,7 +98,6 @@ const Home: React.FC = () => {
       ) : (
         <div className="content__items">{status === 'loading' ? loader : pizzas}</div>
       )}
-
       {categoryId === 0 && <Pagination currentPage={currentPage} onChangePage={onChangePage} />}
     </div>
   );

@@ -1,0 +1,362 @@
+@import '../vendor/all';
+
+.cart {
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 760px) {
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    @include font(32px, bold);
+    margin-bottom: 20px;
+  }
+
+  &__logo {
+    position: relative;
+    top: -2px;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+
+  &__clear {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    @include noselect();
+    transition: all $duration ease-in-out;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &__clear-text {
+    display: inline-block;
+    margin-left: 7px;
+    color: #b6b6b6;
+    @include font(18px);
+  }
+
+  &__item {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid $gray-line;
+    padding-top: 30px;
+    margin-top: 30px;
+
+    @media (max-width: 760px) {
+      flex-direction: column;
+      position: relative;
+    }
+  }
+
+  &__item-remove {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 4%;
+
+    @media (max-width: 760px) {
+      position: absolute;
+      right: 0;
+      width: auto;
+
+      .button-circle {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .button-circle {
+      border-color: darken($color: $gray-line, $amount: 10);
+    }
+
+    svg {
+      transform: rotate(45deg);
+
+      path {
+        fill: darken($color: $gray-line, $amount: 15);
+      }
+    }
+
+    .button-circle {
+      svg {
+        width: 11.5px;
+        height: 11.5px;
+        position: relative;
+      }
+      &:hover,
+      &:active {
+        border-color: darken($color: $gray-line, $amount: 80);
+        background-color: darken($color: $gray-line, $amount: 80);
+      }
+    }
+  }
+
+  &__item-image-wrap {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    width: 10%;
+
+    @media (max-width: 760px) {
+      width: 100%;
+      justify-content: center;
+      order: 1;
+    }
+  }
+
+  &__item-image {
+    width: 80px;
+    height: 80px;
+
+    @media (max-width: 760px) {
+      width: 60%;
+      height: 100%;
+    }
+  }
+
+  &__item-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    margin-left: 10px;
+
+    @media (max-width: 760px) {
+      width: 100%;
+      order: 2;
+    }
+  }
+
+  &__item-name {
+    @include font(22px, bold);
+    line-height: 27px;
+    letter-spacing: 0.01em;
+
+    @media (max-width: 760px) {
+      @include font(32px, bold);
+      margin-bottom: 8px;
+      margin-top: 15px;
+    }
+
+    @media (max-width: 500px) {
+      @include font(24px, bold);
+    }
+  }
+
+  &__item-text {
+    @include font(18px);
+    color: #8d8d8d;
+
+    @media (max-width: 760px) {
+      @include font(22px);
+    }
+  }
+
+  &__item-count {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 16%;
+
+    @media (max-width: 760px) {
+      order: 4;
+      width: 130px;
+      margin: 10px;
+
+      .button {
+        width: 40px;
+        height: 40px;
+
+        svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+
+    &-minus {
+      svg {
+        path:first-of-type {
+          display: none;
+        }
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        border-color: #787878;
+
+        &:active {
+          transform: none;
+        }
+
+        &:hover {
+          background-color: transparent;
+
+          svg path {
+            fill: #787878;
+          }
+        }
+
+        svg path {
+          fill: #787878;
+        }
+      }
+    }
+  }
+
+  &__item-count-text {
+    @include font(22px, bold);
+
+    @media (max-width: 760px) {
+      @include font(24px, bold);
+    }
+  }
+
+  &__item-price {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 23%;
+    @include font(22px, bold);
+    letter-spacing: 0.01em;
+
+    @media (max-width: 760px) {
+      width: 33%;
+      order: 3;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin: 10px;
+      @include font(24px, bold);
+    }
+  }
+
+  &__bottom {
+    margin: 50px 0;
+  }
+
+  &__bottom-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    .go-back-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 210px;
+      padding: 16px;
+      border-color: darken($color: $gray-line, $amount: 10);
+
+      &__span {
+        color: darken($color: $gray-line, $amount: 20);
+        @include font(_, 600);
+      }
+
+      &:hover {
+        background-color: darken($color: $gray-line, $amount: 90);
+        border-color: darken($color: $gray-line, $amount: 90);
+      }
+
+      svg {
+        margin-right: 12px;
+        path {
+          fill: transparent;
+          stroke-width: 2;
+        }
+      }
+    }
+
+    .pay-btn {
+      @include font(16px, 600);
+      width: 210px;
+      padding: 16px;
+
+      &__span {
+        @include font(__, bold);
+      }
+    }
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+
+      .button {
+        margin-bottom: 20px;
+        width: 100%;
+        height: 54px;
+      }
+    }
+  }
+
+  &__bottom-details {
+    display: flex;
+    justify-content: space-between;
+
+    @media (max-width: 500px) {
+      flex-direction: column;
+      margin: 10px;
+    }
+  }
+
+  &__bottom-details-text {
+    @include font(22px);
+
+    @media (max-width: 500px) {
+      &:first-child {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__bottom-details-span {
+    @include font(22px, bold);
+    color: $orange;
+  }
+}
+
+.cart-empty {
+  margin: 0 auto;
+  max-width: 560px;
+  text-align: center;
+
+  &__title {
+    @include font(32px, bold);
+    margin-bottom: 10px;
+
+    @media (max-width: 500px) {
+      @include font(24px, bold);
+    }
+  }
+
+  &__title-span {
+    font-style: normal;
+    position: relative;
+    top: 2px;
+    @include font(32px);
+
+    @media (max-width: 500px) {
+      @include font(24px);
+    }
+  }
+
+  &__text {
+    @include font(18px);
+    line-height: 145.4%;
+    letter-spacing: 0.01em;
+    color: #777777;
+  }
+
+  &__image {
+    margin: 45px auto 60px;
+    width: 60%;
+  }
+}

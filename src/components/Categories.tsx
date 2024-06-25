@@ -1,4 +1,6 @@
+import cn from 'classnames';
 import React from 'react';
+import { categories } from '../utils/constants';
 
 type TCategoryProps = {
   value: number,
@@ -6,14 +8,12 @@ type TCategoryProps = {
 }
 
 const Categories: React.FC<TCategoryProps> = React.memo(({ value, onChangeCategory }) => {
-  const categories: string[] = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые'];
-
   return (
     <div className="categories">
-      <ul>
+      <ul className="categories__cells">
         {categories.map((category, i) => {
           return (
-            <li onClick={() => onChangeCategory(i)} key={i} className={value === i ? 'active' : ''}>
+            <li onClick={() => onChangeCategory(i)} key={i} className={cn('categories__cell', { categories__cell_active: value === i })}>
               {category}
             </li>
           );
